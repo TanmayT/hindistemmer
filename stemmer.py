@@ -17,7 +17,14 @@ flag2=0
 #lines=file1.read().splitlines()
 file2=open("/home/tanmay/Desktop/Projects/Hindi_Stemmer/ignorewrd.txt","r")
 conso=file2.read().splitlines()
-lists=["ाएंगी","ाएंगे","ाऊंगी","ाऊंगा","ाइयाँ","ाइयों","ाइयां","ाएगी","ाएगा","ाओगी","ाओगे","एंगी","ेंगी","एंगे","ेंगे","ूंगी","ूंगा","ातीं","नाओं","नाएं","ताओं","ताएं","यों","याँ","ाकर","ाइए","ाईं","ाया","ेगी","ेगा","ोगी","ोगे","ाने","ाना","ाते","ाती","ाता","तीं","ाओं","ाएं","ुओं","ुएं","ुआं","कर","ाओ","िए","ाई","ाए","ने","नी","ना","ते","ीं","ती","ता","ाँ","ां","ों","ें","ो","े","ू","ु","ी","ि","ा","एँ"]
+#lists=["ाएंगी","ाएंगे","ाऊंगी","ाऊंगा","ाइयाँ","ाइयों","ाइयां","ाएगी","ाएगा","ाओगी","ाओगे","एंगी","ेंगी","एंगे","ेंगे","ूंगी","ूंगा","ातीं","नाओं","नाएं","ताओं","ताएं","यों","याँ","ाकर","ाइए","ाईं","ाया","ेगी","ेगा","ोगी","ोगे","ाने","ाना","ाते","ाती","ाता","तीं","ाओं","ाएं","ुओं","ुएं","ुआं","कर","ाओ","िए","ाई","ाए","ने","नी","ना","ते","ीं","ती","ता","ाँ","ां","ों","ें","ो","े","ू","ु","ी","ि","ा","एँ"]
+l1=[' ि◌यों' ,' ि◌यां', 'ि◌अ◌ो◌ं','यां' ,'यों']
+l2=['अ◌ो◌ं' ,'◌ौ◌ं','ए◌']
+l3=['◌ो◌ं',"े",'◌ो']
+l4=['◌ं','◌ी','एँ','एं ','◌ा']
+l5=['ए']
+l6=['ई' ,'ना' , 'ता' , 'ती' , 'जन' , 'गण' , 'तया' , 'वर्ग' , 'कार' , 'त्व', '◌े◌ं' , '◌ीय']
+l7=['◌़ि◌याँ']
 for word in sentence.split():
     #for ignore in lines:
         #if(word == ignore):
@@ -33,12 +40,60 @@ for word in sentence.split():
     if flag1!=0:
         flag1=0
         continue
-    for end in lists:
+    for end in l1:
         if (word.endswith(end) and len(word)>len(end)+1):
-            print(word[:-len(end)])
+            word=word[:-len(end)-1]
+            print(word+'ी')
             flag2=flag2+1
             break
-            
+    if(flag2!=0):
+        break
+    for end in l2:
+        if (word.endswith(end) and len(word)>len(end)+1):
+            word=word[:-len(end)]
+            print(word)
+            flag2=flag2+1
+            break
+    if(flag2!=0):
+        continue    
+    for end in l3:
+        if (word.endswith(end) and len(word)>len(end)+1):
+            word=word[:-len(end)]
+            print(word+'◌ा')
+            flag2=flag2+1
+            break
+    if(flag2!=0):
+        continue    
+    for end in l4:
+        if (word.endswith(end) and len(word)>len(end)+1):
+            word=word[:-len(end)]
+            print(word)
+            flag2=flag2+1
+            break
+    if(flag2!=0):
+        continue    
+    for end in l5:
+        if (word.endswith(end) and len(word)>len(end)+1):
+            word=word[:-len(end)]
+            print(word+'आ')
+            flag2=flag2+1
+            break
+    if(flag2!=0):
+        continue    
+    for end in l6:
+        if (word.endswith(end) and len(word)>len(end)+1):
+            word=word[:-len(end)]
+            print(word)
+            flag2=flag2+1
+            break
+    if(flag2!=0):
+        continue    
+    for end in l7:
+        if (word.endswith(end) and len(word)>len(end)+1):
+            word=word[:-len(end)]
+            print(word+'या')
+            flag2=flag2+1
+            break    
     if (flag2==0):
         print(word)
     flag2=0
