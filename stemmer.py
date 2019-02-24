@@ -5,26 +5,14 @@ Spyder Editor
 
 This is a developing script file.
 """
-
-# dictionary = { 'अपनाना' : 'अपना', 'खेलना': 'खेल', 'खाना': 'खाना','सोना':'सो','सिल्ना':'सिल' ,'कुद्ना':'कुद ' ,'रखना': 'रख' ,'करना': 'कर', 'हसना': 'हस', 'समझना': 'समझ', 'बोलना': 'बोल', 'सुनना': 'सुन', 'देखना': 'देख', 'चाहना': 'चाह', 'मरना': 'मर', 'मारना' :'मार', 'देना': 'दे', 'लिखना': 'लिख', 'बनाना': 'बन', 'पढ़ना': 'पढ़', 'भूलना' :'भूल', 'खोलना': 'खोल', 'पटकना' :'पटक '} # Add the rest of your words and stems
-#stems = ['अपना', 'खेल', 'खाना','सो','सिल' ,'कुद ' , 'रख' , 'कर',  'हस',  'समझ',  'बोल',  'सुन',  'देख',  'चाह',  'मर', 'मार',  'दे',  'लिख',  'बन',  'पढ़', 'भूल', 'खोल', 'पटक','ओढ','बिछ','खोल','जल','डर','रह']
 sentence = input()
 flag1=0
 flag2=0
-#file=open("/home/tanmay/Desktop/Projects/Hindi_Stemmer/stems.txt","r")
-#lines=file.read().splitlines()
-#file1=open("/home/tanmay/Desktop/Projects/Hindi_Stemmer/ignorewrd.txt","r")
-#lines=file1.read().splitlines()
 file2=open("/home/tanmay/Desktop/Projects/Hindi_Stemmer/ignorewrd.txt","r")
 conso=file2.read().splitlines()
-lists=["ाएंगी","ाएंगे","ाऊंगी","ाऊंगा","ाइयाँ","ाइयों","ाइयां","ाएगी","ाएगा","ाओगी","ाओगे","एंगी","ेंगी","एंगे","ेंगे","ूंगी","ूंगा","ातीं","नाओं","नाएं","ताओं","ताएं","यों","याँ","ाकर","ाइए","ाईं","ाया","ेगी","ेगा","ोगी","ोगे","ाने","ाना","ाते","ाती","ाता","तीं","ाओं","ाएं","ुओं","ुएं","ुआं","कर","ाओ","िए","ाई","ाए","ने","नी","ना","ते","ीं","ती","ता","ाँ","ां","ों","ें","ो","े","ू","ु","ी","ि","ा","एँ"]
+lists=["ियों","ियां","ाएंगी","ाएंगे","ाऊंगी","ाऊंगा","ाइयाँ","ाइयों","ाइयां","ाएगी","ाएगा","ाओगी","ीय","ाओगे","एंगी","ेंगी","एंगे","ेंगे","ूंगी","ूंगा","ातीं","नाओं","नाएं","ताओं","ताएं","यों","याँ","ाकर","ाइए","ाईं","ाया","ेगी","ेगा","ोगी","ोगे","ाने","ाना","ाते","ाती","ाता","तीं","ाओं","ाएं","ुओं","ुएं","ुआं","कर","ाओ","िए","ाई","ाए","ने","नी","ना","ते","ीं","ती","ता","ाँ","ां","ों","ें","ो","े","ू","ु","ी","ि","ा","एँ"]
 for word in sentence.split():
-    #for ignore in lines:
-        #if(word == ignore):
-            #print(word)
-            #counter=counter+1
-            #break
-    #file=open("/home/tanmay/Desktop/stems.txt","r") 
+    
     for ign in conso:
         if ign == word:
             print(word)
@@ -35,6 +23,16 @@ for word in sentence.split():
         continue
     for end in lists:
         if (word.endswith(end) and len(word)>len(end)+1):
+            if(end=="ियों" or end=="ियां" ):
+                word=word[:-len(end)]
+                print(word+"ी")
+                flag2=flag2+1
+                break
+            if(end=="यों" or end=="याँ"):
+                word=word[:-len(end)-1]
+                print(word+"ी")
+                flag2=flag2+1
+                break
             print(word[:-len(end)])
             flag2=flag2+1
             break
